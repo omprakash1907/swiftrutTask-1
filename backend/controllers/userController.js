@@ -31,11 +31,12 @@ exports.loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token, role: user.role });
+        res.json({ token, role: user.role }); // Send role as well
     } catch (error) {
         res.status(500).json({ message: 'Error logging in', error });
     }
 };
+
 
 // Assign Role (Admin Only)
 exports.assignRole = async (req, res) => {
